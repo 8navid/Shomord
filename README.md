@@ -1,5 +1,5 @@
 # Shomord 
-https://www.Shomord.ir,     8navid@gmail.com
+http://www.Shomord.ir,    8navid@gmail.com
 Online version of commonly used computing tools.
 It includes the following:
 
@@ -10,4 +10,5 @@ It includes the following:
 5-Equivalent Resistance Calculator
 6-SMD Dimesnion Calculator
 7-Heat Sink Calculator
+8-
 
