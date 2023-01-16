@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+	<meta charset="UTF-8">
+	<meta name="description" content="Free Web tutorials">
+	<meta name="keywords" content="Resistor Wattage  ,Voltage Divider ,Equivalent Capacitance Calculator,Equivalent Resistance,SMD Size,Heat Sink Calculator,Online Calculator">
+	<meta name="author" content="8navid">
+	 
+
+    <style>
+.form-control::-webkit-input-placeholder { color: red !important; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: red !important; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: red !important; }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: red !important; }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: red !important; }  /* Microsoft Edge */
+ 
+    body,div,textarea,p,ul,li,input {
+         background:#283747   !important;
+
+    }
+    input,textarea{
+         border-color: #F5CBA7 !important;
+         color:#E4A11B !important;
+    }
+ 
+    textarea {
+       height: 10em !important;
+       resize: none !important;
+      }
+    .i-am-centered { margin-left: 5rem; max-width: 19rem; width: 19rem; !important }
+    .card {
+      min-width:20rem !important;
+      max-width:20rem !important;
+      min-height:25rem !important;
+      max-height:25rem !important;
+      margin: 1rem;
+      border-width:3px !important;
+    }
+    * {
+      font-family: 'Courier New', monospace;
+    }
+        </style>
+  <title>SHOMORD</title>      
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="stylesheet" href="./SHOMORD_files/bootstrap.min.css">  
+</head>  
+<body>  
+  <div class="i-am-centered">
+  <div class="row mt-1 ">
+      <div class="col-">
+      <input type="text" id="myFilter" class="form-control " onkeyup="SearchCards()" placeholder="search card titles..">
+      </div>
+      <div class="col">
+      <button type="button" class="btn btn-outline-warning " onclick="ClearInputs()">x</button>
+      </div>
+    
+  </div>
+
+</div>
+    <div class="card-deck mt-2 ml-5 mr-5 mb-2 " id="theCards">
+        <div class="card border-warning ">
+          <div class="card-body text-warning ">
+            <h5 class="card-title">Resistor Wattage</h5>         
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> 
+
+                              <input type="text" class="form-control" id="ResWatt_R" placeholder="Resistor"> 
+                        </li>
+                        <li class="list-group-item">
+                            
+                            <input type="text" class="form-control" id="ResWatt_I" placeholder="Current">
+                        </li>
+                        <li class="list-group-item">
+                            
+                            <input type="text" class="form-control" id="ResWatt_V" placeholder="Voltage">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="ResWatt_P" placeholder="Watt">
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-block" onclick="ResWattage()">=</button>
+                        </li>
+                      </ul> 
+          </div>
+          
+        </div>
+        <div class="card border-warning ">
+          <div class="card-body text-warning">
+            <h5 class="card-title">Voltage Divider</h5>         
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="vDivider_R1" placeholder="R1">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="vDivider_R2" placeholder="R2">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="vDivider_VIN" placeholder="Vin">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="vDivider_VOUT" placeholder="Vout">
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-block" onclick="VoltageDivider()">=</button>
+                        </li>
+                      </ul> 
+          </div>
+        </div>
+        <div class="card border-warning"> 
+          <div class="card-body text-warning">
+            <h5 class="card-title">Equivalent Capacitance</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"> 
+                <textarea class="form-control" id="cap_calc_input" rows="5" placeholder="Enter Cap values,1p10s5p9 === (1) parallel to (10 series to 5) parallel to (9)"></textarea> 
+              </li> 
+              <li class="list-group-item"> 
+                  <input type="text" class="form-control" id="cap_calc_result" placeholder="Result">
+              </li>
+              <li class="list-group-item">
+                  <button type="button" class="btn btn-outline-warning btn-sm btn-block mt-sm-1 " onclick="CapCalc()">=</button>
+              </li>
+            </ul>   
+         </div>
+        </div>
+    
+      
+        <div class="card border-warning "> 
+          <div class="card-body text-warning">
+            <h5 class="card-title">Equivalent Resistance </h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"> 
+                <textarea class="form-control" id="resistor_calc_input" rows="5" placeholder="Enter Resistor values,1p10s5p9 === (1) parallel to (10 series to 5) parallel to (9)"></textarea> 
+              </li> 
+              <li class="list-group-item"> 
+                  <input type="text" class="form-control" id="resistor_calc_result" placeholder="Result">
+              </li>
+              <li class="list-group-item">
+                  <button type="button" class="btn btn-outline-warning btn-sm btn-block mt-sm-1" onclick="ResistorCalc()">=</button>
+              </li>
+            </ul>   
+         </div>
+        </div>
+        <div class="card border-warning">
+          
+          <div class="card-body text-warning ">
+            <h5 class="card-title">SMD Size</h5>         
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> 
+
+                              <input type="text" class="form-control" id="SMDpack_in1" placeholder="Enter 1th Package Number"> 
+                        </li>
+                        <li class="list-group-item">
+                            
+                            <input type="text" class="form-control" id="SMDpack_in2" placeholder="Enter 2th Package Number">
+                        </li>
+                        <li class="list-group-item">
+                          <canvas id="SMDpack_canvas" width="300" height="92">
+                            Your browser does not support the HTML5 canvas tag.</canvas>
+                             
+                        </li>
+                       
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-block " onclick="DoSMDDim()">=</button>
+                        </li>
+                      </ul> 
+          </div>
+          
+        </div>
+        <div class="card border-warning">
+          
+          <div class="card-body text-warning">
+            <h5 class="card-title">Heat Sink Calculator</h5>         
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="thermal_j" placeholder="Junction Temperature">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="thermal_amb" placeholder="Ambient Temperature">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="thermal_p" placeholder="Power">
+                        </li>
+                        <li class="list-group-item">
+                             
+                            <input type="text" class="form-control" id="thermal_ja" placeholder="Rtheta Junction to Ambient ">
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-block" onclick="ThermalCalc()">=</button>
+                        </li>
+                      </ul> 
+          </div>
+
+        </div>
+
+   <div class="card  border-warning">                                                                                              
+  <div class="my-auto" style="color: #E4A11B; font-size: 40px;">
+<p>
+شُــــــمـُــــ   
+</p>
+<p style=" text-align: right;">
+ـرد    
+</p>                                                                        
+</div>
+ 
+</div>   
+        
+<script type="text/javascript" src="./SHOMORD_files/jquery-3.6.3.min.js.download"></script> 
+<script type="text/javascript">
+ 
+  function ClearInputs(){
+    var inputs = document.getElementsByTagName("input");
+    var inputs2 = document.getElementsByTagName("textarea");
+    for(var i=0;i<inputs.length;i++)
+        inputs[i].value = '';
+    for(var i=0;i<inputs2.length;i++)
+        inputs2[i].value = '';
+    var c = document.getElementById("SMDpack_canvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);   
+    SearchCards();
+  } ;
+
+  function SearchCards() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("theCards");
+    cards = cardContainer.getElementsByClassName("card");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-body h5.card-title");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+ function ResWattage() {
+  var ResWatt_R = parseFloat(document.getElementById("ResWatt_R").value);
+  var ResWatt_I = parseFloat(document.getElementById("ResWatt_I").value);
+  var ResWatt_V = parseFloat(document.getElementById("ResWatt_V").value);
+  var ResWatt_P = parseFloat(document.getElementById("ResWatt_P").value);
+  if (isNaN(ResWatt_P)==true) {
+    if(isNaN(ResWatt_R)==false && isNaN(ResWatt_I)==false){
+      document.getElementById('ResWatt_P').value= ResWatt_R * ResWatt_I * ResWatt_I;
+      document.getElementById('ResWatt_V').value= ResWatt_R * ResWatt_I ;
+    } 
+    else if(isNaN(ResWatt_R)==false && isNaN(ResWatt_V)==false){
+      document.getElementById('ResWatt_P').value= ResWatt_V * ResWatt_V / ResWatt_R;
+      document.getElementById('ResWatt_I').value= ResWatt_V / ResWatt_R ;
+    }
+    else if(isNaN(ResWatt_I)==false && isNaN(ResWatt_V)==false){
+      document.getElementById('ResWatt_P').value= ResWatt_V * ResWatt_I;
+      document.getElementById('ResWatt_R').value= ResWatt_V / ResWatt_I ;
+    }
+  }
+  else if (isNaN(ResWatt_R)==true) {  
+    if(isNaN(ResWatt_P)==false && isNaN(ResWatt_I)==false){
+      document.getElementById('ResWatt_R').value=ResWatt_P/ ( ResWatt_I * ResWatt_I );
+      document.getElementById('ResWatt_V').value=ResWatt_P / ResWatt_I ;
+    }
+    else if(isNaN(ResWatt_P)==false && isNaN(ResWatt_V)==false){
+      document.getElementById('ResWatt_R').value= ResWatt_V * ResWatt_V / ResWatt_P  ;
+      document.getElementById('ResWatt_I').value= ResWatt_P / ResWatt_V ;
+    }  
+    else if(isNaN(ResWatt_I)==false && isNaN(ResWatt_V)==false){ //TEKRARI
+      document.getElementById('ResWatt_R').value= ResWatt_V / ResWatt_I  ;
+      document.getElementById('ResWatt_P').value= ResWatt_I * ResWatt_V ;
+    }        
+  }
+  else if (isNaN(ResWatt_V)==true) {  
+    if(isNaN(ResWatt_P)==false && isNaN(ResWatt_I)==false){ //TEKRARI
+      document.getElementById('ResWatt_R').value=ResWatt_P/ ( ResWatt_I * ResWatt_I );
+      document.getElementById('ResWatt_V').value=ResWatt_P / ResWatt_I ;
+    }
+    else if(isNaN(ResWatt_P)==false && isNaN(ResWatt_R)==false){
+      document.getElementById('ResWatt_V').value= Math.sqrt(ResWatt_P * ResWatt_R) ;
+      document.getElementById('ResWatt_I').value= Math.sqrt(ResWatt_P / ResWatt_R) ;
+    }  
+    else if(isNaN(ResWatt_I)==false && isNaN(ResWatt_R)==false){
+      document.getElementById('ResWatt_V').value= ResWatt_R * ResWatt_I  ;
+      document.getElementById('ResWatt_P').value= ResWatt_R * ResWatt_I * ResWatt_I ;
+    }        
+  }
+  else if (isNaN(ResWatt_I)==true) {  
+    if(isNaN(ResWatt_P)==false && isNaN(ResWatt_V)==false){ //TEKRARI
+      document.getElementById('ResWatt_R').value= Math.sqrt(ResWatt_V * ResWatt_V / ResWatt_P);
+      document.getElementById('ResWatt_I').value=ResWatt_P / ResWatt_V ;
+    }
+    else if(isNaN(ResWatt_P)==false && isNaN(ResWatt_R)==false){ //TEKRARI
+      document.getElementById('ResWatt_V').value= Math.sqrt(ResWatt_P * ResWatt_R) ;
+      document.getElementById('ResWatt_I').value= Math.sqrt(ResWatt_P / ResWatt_R) ;
+    }  
+    else if(isNaN(ResWatt_V)==false && isNaN(ResWatt_R)==false){
+      document.getElementById('ResWatt_I').value= ResWatt_V * ResWatt_R  ;
+      document.getElementById('ResWatt_P').value= ResWatt_V * ResWatt_V / ResWatt_R ;
+    }        
+  }
+};
+
+function CapCalc(){
+  let text = document.getElementById("cap_calc_input").value;
+  let tmp=[0,0]; 
+  let pindice=[];
+  let result=0;
+const myArray = text.split(/p/);
+for(x=0;x<myArray.length;x++){
+  if(myArray[x].split(/s/).length==1){ 
+   pindice[x]=parseFloat(myArray[x]); 
+  }else if(myArray[x].split(/s/).length>=2){
+   tmp=myArray[x].split(/s/);
+   tmp=tmp.map(Number) 
+   pindice[x]=0;
+   for(z=0;z<tmp.length;z++){
+    pindice[x]=pindice[x]+(1/tmp[z]);
+   }
+   pindice[x]=1/pindice[x];
+  } 
+}
+for(y=0;y<pindice.length;y++){
+
+  result=pindice[y]+result;
+}
+document.getElementById('cap_calc_result').value=result;
+};
+
+function ResistorCalc(){
+  let text = document.getElementById("resistor_calc_input").value;
+  let tmp=[0,0]; 
+  let pindice=[];
+  let result=0;
+const myArray = text.split(/s/);
+for(x=0;x<myArray.length;x++){
+  if(myArray[x].split(/p/).length==1){ 
+   pindice[x]=parseFloat(myArray[x]); 
+  }else if(myArray[x].split(/p/).length>=2){
+   tmp=myArray[x].split(/p/);
+   tmp=tmp.map(Number) 
+   pindice[x]=0;
+   for(z=0;z<tmp.length;z++){
+    pindice[x]=pindice[x]+(1/tmp[z]);
+   }
+   pindice[x]=1/pindice[x];
+  } 
+}
+for(y=0;y<pindice.length;y++){
+
+  result=pindice[y]+result;
+}
+document.getElementById('resistor_calc_result').value=result;
+};
+
+function VoltageDivider() {
+  var vDivider_R1 = parseFloat(document.getElementById("vDivider_R1").value);
+  var vDivider_R2 = parseFloat(document.getElementById("vDivider_R2").value);
+  var vDivider_VIN = parseFloat(document.getElementById("vDivider_VIN").value);
+  var vDivider_VOUT = parseFloat(document.getElementById("vDivider_VOUT").value);
+  if (isNaN(vDivider_VIN)==true) {
+    if(isNaN(vDivider_R2)==false && isNaN(vDivider_R1)==false && isNaN(vDivider_VOUT)==false){
+      document.getElementById('vDivider_VIN').value= vDivider_VOUT * (vDivider_R1 + vDivider_R2)/ vDivider_R2; 
+    }  
+  }
+  else if (isNaN(vDivider_VOUT)==true) {  
+    if(isNaN(vDivider_R2)==false && isNaN(vDivider_R1)==false && isNaN(vDivider_VIN)==false){
+      document.getElementById('vDivider_VOUT').value= vDivider_VIN * (vDivider_R2) / (vDivider_R2 + vDivider_R1);
+    }      
+  }
+  else if (isNaN(vDivider_R1)==true) {  
+    if(isNaN(vDivider_R2)==false && isNaN(vDivider_VOUT)==false && isNaN(vDivider_VIN)==false){
+      document.getElementById('vDivider_R1').value= (vDivider_VIN * vDivider_R2 / vDivider_VOUT) - vDivider_R2;
+    }         
+  }
+  else if (isNaN(vDivider_R2)==true) {  
+    if(isNaN(vDivider_R1)==false && isNaN(vDivider_VOUT)==false && isNaN(vDivider_VIN)==false){
+      document.getElementById('vDivider_R2').value= -vDivider_R1+ vDivider_R1 / (1- (vDivider_VOUT / vDivider_VIN));
+    }         
+  }
+};
+function DoSMDDim() {
+  
+  var dSMDpack_in1 = document.getElementById("SMDpack_in1").value;
+  var dSMDpack_in2 = document.getElementById("SMDpack_in2").value;
+  var c = document.getElementById("SMDpack_canvas");
+  var ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  var dSMDpack_res="";
+  for(z=0;z<SmdDim.length;z++){
+    if(SmdDim[z][0]==dSMDpack_in1){
+      ctx.beginPath();
+      ctx.lineWidth = "1";
+      ctx.strokeStyle = "white";
+      ctx.rect(5, 5, 10*SmdDim[z][1], 10*SmdDim[z][2]);  
+      ctx.stroke();
+      dSMDpack_res="1th: "+SmdDim[z][1]+" x "+SmdDim[z][2];
+    }
+    if(SmdDim[z][0]==dSMDpack_in2){
+      ctx.beginPath();
+      ctx.lineWidth = "1";
+      ctx.strokeStyle = "chartreuse";
+      ctx.rect(5, 5, 10*SmdDim[z][1], 10*SmdDim[z][2]);  
+      ctx.stroke();
+      dSMDpack_res=dSMDpack_res+" 2th:"+SmdDim[z][1]+" x "+SmdDim[z][2];
+    }
+  }
+  document.getElementById("SMDpack_res").value=dSMDpack_res;
+};
+function ThermalCalc(){
+    var ThermalCalc_j =parseFloat( document.getElementById("thermal_j").value );
+    var ThermalCalc_amb = parseFloat(document.getElementById("thermal_amb").value);
+    var ThermalCalc_p = parseFloat(document.getElementById("thermal_p").value);
+    var ThermalCalc_ja = parseFloat(document.getElementById("thermal_ja").value);
+    if(isNaN(ThermalCalc_j)==true && isNaN(ThermalCalc_amb)==false && isNaN(ThermalCalc_p)==false && isNaN(ThermalCalc_ja)==false){
+      document.getElementById('thermal_j').value= ThermalCalc_amb+ThermalCalc_p*ThermalCalc_ja;
+    } 
+    else if(isNaN(ThermalCalc_j)==false && isNaN(ThermalCalc_amb)==true && isNaN(ThermalCalc_p)==false && isNaN(ThermalCalc_ja)==false){
+      document.getElementById('thermal_amb').value= ThermalCalc_j-ThermalCalc_p*ThermalCalc_ja;
+    } 
+    else if(isNaN(ThermalCalc_j)==false && isNaN(ThermalCalc_amb)==false && isNaN(ThermalCalc_p)==true && isNaN(ThermalCalc_ja)==false){
+      document.getElementById('thermal_p').value= (ThermalCalc_j-ThermalCalc_amb)/ThermalCalc_ja;
+    } 
+    else if(isNaN(ThermalCalc_j)==false && isNaN(ThermalCalc_amb)==false && isNaN(ThermalCalc_p)==false && isNaN(ThermalCalc_ja)==true){
+      document.getElementById('thermal_ja').value= (ThermalCalc_j-ThermalCalc_amb)/ThermalCalc_p;
+    } 
+}
+let SmdDim = [
+    ["0201",  0.6,0.3  ],
+    ["0402",  1,0.5  ],
+    ["0603",  1.5,0.8  ],
+    ["0805",  2,1.3  ],
+    ["1206",  3,1.5  ],
+    ["1210",  3.2,2.5  ],
+    ["1806",  4.5,1.6  ],
+    ["1812",  4.6,3  ],
+    ["1825",  4.5,6.4  ],
+    ["2010",  5,2.5  ],
+    ["2512",  6.3,3.2  ],
+    ["2920",  7.4,5.1  ],
+    ["SOT523",  1.6,1.6  ],
+    ["SOT323",  2,2.1  ],
+    ["SOT23",  2.9,2.4  ],
+    ["SOT25", 2.9,2.8 ],
+    ["SOT353", 2,2.1 ],
+    ["SOT553", 1.6,1.6 ],
+    ["SOT953", 1,1 ],
+    ["MP6D", 1.45,1 ],
+    ["SOT363", 2,2.1 ],
+    ["SOT505", 2.9,4 ],
+    ["SOT765", 2,3.1 ],
+    ["SOIC14", 8.95,6 ],
+    ["SOP14", 10.8,7.8 ],
+    ["TSSOP14", 5.4,6.4 ],
+    ["TSSOP14B", 5,6.4 ],
+    ["US14", 4,4 ],  
+    ["DIP14", 19.75,7.62 ],  
+    ["SOIC16", 10.2,6 ],
+    ["SOP16", 10.8,7.8 ],
+    ["TSSOP16", 5,6.4 ],
+    ["TSSOP16B", 5,6.4 ],
+    ["US14", 4,4 ],
+    ["DIP16", 19.75,7.62 ],
+    ["SOIC20", 13.1,10.3 ],
+    ["SOP20", 13.3,7.8 ],
+    ["TQFN20", 4.5,2.5 ],
+    ["TSSOP20", 6.5,6.4 ],
+    ["TSSOP20B", 6.5,6.4 ],
+    ["US20", 5,4 ],
+    ["TSSOP48", 12.8,8.1 ],
+    ["DIP20", 25.1,7.62 ],
+    ["DPAK", 6.6,10 ],
+    ["D2PAK", 15.3,10.35 ],
+    ["D2PAK+", 15,10 ],
+    ["DPAK+", 9.5,6.5 ],
+    ["SOT23F", 2.4,2.9 ],
+    ["TO220", 15.1,10.16 ],
+    ["TO247", 20.95,15.94 ],
+    ["SOP8", 6,4.9 ]
+];
+</script>
+<script type="text/javascript" src="./SHOMORD_files/bootstrap.min.js.download"></script>   
+ 
+
+
+
+
+</div></body></html>
